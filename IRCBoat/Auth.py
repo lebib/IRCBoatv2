@@ -8,8 +8,9 @@ class User:
     separator = ','
 
     def __init__(self, line):
-        self.login, self.password, self.level,self.nickname =line.strip().split(
+        self.login, password, self.level,self.nickname =line.strip().split(
             self.separator)
+        self.password = self.hash_password(password)
 
     def __str__(self):
         return self.separator.join(
@@ -17,9 +18,15 @@ class User:
         )
 
     def hash_password(self, password):
+        """ string -> string
+        Hash the given password using sha256 encryption.
+        """
         return sha256_crypt.encrypt(password)
 
     def check_password(self, password):
+        """ string -> bool
+        Return truye if the given password is correct.
+        """
         return self.password == hash_password(password)
 
     def __repr__(self):
@@ -60,8 +67,6 @@ class BOATAuth:
         Add a new user in the USER file at self.filename.
         Return something if the login is already used.
         """
-        if self.is_user(login):
-            return
         user_list = UserList(self.filename)
         user_list[login] = User(
             ','.join([login, password, str(level), nickname])
@@ -74,7 +79,7 @@ class BOATAuth:
         Do nothing if the user does not exist.
         """
         user_list = UserList(self.filename)
-        user_list[login] = ''
+        del tel['login']
         user_list.save()
 
     def update_user(self, login, password=None, level=None, nickname=None):
@@ -82,20 +87,35 @@ class BOATAuth:
         Update the user with the given login from the USER file.
         The args with the None values will keep the old values.
         """
-        pass
+        if self.is_user(login):
+            user_list = UserList(self.filename)
+            old_user = user_list['login']
+            if password is not None: old_user.password = password
+            if level is not None: old_user.level = level
+            if nickname is not None: old_user.nickname = nickname
+            user_list[login] = User(
+                old_user.separator.join([
+                    old_user.login,
+                    old_user.password,
+                    old_user.level,
+                    old_user.nickname])
+            )
+            user_list.save()
 
     def is_user(self, login):
         """ str -> bool
         Find if the user with the given login exist. Return true if yes.
         """
-        return self.get_user(login) is not None
+        user_list = UserList(self.filename)
+        return login in user_list
 
     def is_user_connected(self, login):
         """ str -> bool
         Find if the user with the given login is connected. Return true if yes.
         """
+        if self.get_user()
         user_list = UserList(self.filename)
-        return user_list[login].nick is not None
+        return user_list[login].nick != ''
 
     def get_user(self, login):
         """ str -> User
@@ -103,4 +123,7 @@ class BOATAuth:
         instead.
         """
         user_list = UserList(self.filename)
-        return user_list[login]
+        if self.is_user(login):
+            return user_list[login]
+        else:
+            return None
