@@ -1,6 +1,6 @@
 #!/usr/bin/python3.4
 #-*- coding: utf-8 -*-
-from User import User, UserList
+from IRCBoat.Auth.User import User, UserList
 
 class BOATAuth:
     def __init__(self, filename="USERS.csv"):
@@ -13,7 +13,7 @@ class BOATAuth:
         """
         user_list = UserList(self.filename)
         user_list[login] = User(
-            ','.join([login, password, str(level), nickname])
+            ','.join([login, User.hash_password(password), str(level), nickname])
         )
         user_list.save()
 
@@ -23,7 +23,7 @@ class BOATAuth:
         Do nothing if the user does not exist.
         """
         user_list = UserList(self.filename)
-        del tel['login']
+        del user_list[login]
         user_list.save()
 
     def update_user(self, login, password=None, level=None, nickname=None):
@@ -33,16 +33,22 @@ class BOATAuth:
         """
         if self.is_user(login):
             user_list = UserList(self.filename)
-            old_user = user_list['login']
-            if password is not None: old_user.password = password
-            if level is not None: old_user.level = level
-            if nickname is not None: old_user.nickname = nickname
+            old_user = user_list[login]
+
+            if password is not None:
+                old_user.password = User.hash_password(password)
+            if level is not None:
+                old_user.level = level
+            if nickname is not None:
+                old_user.nickname = nickname
+
             user_list[login] = User(
-                old_user.separator.join([
+                "{},{},{},{}".format(
                     old_user.login,
                     old_user.password,
                     old_user.level,
-                    old_user.nickname])
+                    old_user.nickname
+                )
             )
             user_list.save()
 
@@ -57,9 +63,9 @@ class BOATAuth:
         """ str -> bool
         Find if the user with the given login is connected. Return true if yes.
         """
-        if self.get_user()
-        user_list = UserList(self.filename)
-        return user_list[login].nick != ''
+        if self.get_user(login):
+            user_list = UserList(self.filename)
+        return user_list[login].nickname != ''
 
     def get_user(self, login):
         """ str -> User

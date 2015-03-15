@@ -9,17 +9,17 @@ class User:
     separator = ','
 
     def __init__(self, line):
-        self.login, password, self.level, self.nickname = line.strip().split(
+        self.login, self.password, self.level, self.nickname = line.strip().split(
             self.separator)
-        self.password = self.hash_password(password)
 
     def __str__(self):
         return self.separator.join(
             [self.login, self.password, self.level, self.nickname]
         )
 
-    def hash_password(self, password):
-        """ string -> string
+    @staticmethod
+    def hash_password(password):
+        """ str -> str
         Hash the given password using sha256 encryption.
         """
         return sha256_crypt.encrypt(password)
@@ -28,7 +28,7 @@ class User:
         """ string -> bool
         Return truye if the given password is correct.
         """
-        return self.password == hash_password(password)
+        return sha256_crypt.verify(password, self.password)
 
     def __repr__(self):
         return '<{}.{} (login: {}, level: {})>'.format(
@@ -39,6 +39,10 @@ class User:
 
 class UserList(dict):
     def __init__(self, source):
+        """ str -> str
+        Load the file given in argument in order to get all the users stored
+        on it.
+        """
         self._source = source
 
         with open(source, newline='') as file:
@@ -57,3 +61,5 @@ class UserList(dict):
             self.__class__.__qualname__,
             len(self), self._source
         )
+
+# 4AKXdZp9Q3H
