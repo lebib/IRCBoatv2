@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>IRCBoat module &mdash; IRCBoatv2 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="IRCBoatv2 0.1 documentation" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          IRCBoatv2</a>
+        <span class="navbar-text navbar-version pull-left"><b>0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">IRCBoat module</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/IRCBoat.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="module-IRCBoat">
+<span id="ircboat-module"></span><h1>IRCBoat module<a class="headerlink" href="#module-IRCBoat" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="IRCBoat.Connection">
+<em class="property">class </em><code class="descclassname">IRCBoat.</code><code class="descname">Connection</code><span class="sig-paren">(</span><em>host</em>, <em>port</em>, <em>events</em>, <em>encoding</em>, <em>ssl</em>, <em>verbose</em><span class="sig-paren">)</span><a class="headerlink" href="#IRCBoat.Connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">bottom.connection.Connection</span></code></p>
+<p>Connection is only a specialization of bottom.connection.Connection.
+The idea behind it it&#8217;s to have access directly on the prompt all the
+messages from the server in order to easily debug the application.
+In the future it&#8217;ll be print in a log file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>host</strong> (<em>str</em>) &#8211; Host of the IRC server</li>
+<li><strong>port</strong> (<em>int</em>) &#8211; Port of the IRC server</li>
+<li><strong>encoding</strong> (<em>str</em>) &#8211; Encoding used to get the IRC messages</li>
+<li><strong>ssl</strong> (<em>bool</em>) &#8211; If using SSL or not</li>
+<li><strong>verbose</strong> (<em>bool</em>) &#8211; If printing all the server message or not</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="IRCBoat.Connection.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>loop=None</em><span class="sig-paren">)</span><a class="headerlink" href="#IRCBoat.Connection.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="IRCBoat.IRCBoat">
+<em class="property">class </em><code class="descclassname">IRCBoat.</code><code class="descname">IRCBoat</code><span class="sig-paren">(</span><em>nick</em>, <em>realname</em>, <em>host</em>, <em>port</em>, <em>encoding='UTF-8'</em>, <em>ssl=False</em><span class="sig-paren">)</span><a class="headerlink" href="#IRCBoat.IRCBoat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">bottom.Client</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nick</strong> (<em>str</em>) &#8211; IRC nickname</li>
+<li><strong>realname</strong> (<em>str</em>) &#8211; IRC realname</li>
+<li><strong>host</strong> (<em>str</em>) &#8211; Host of the IRC server</li>
+<li><strong>port</strong> (<em>int</em>) &#8211; Port of the IRC server</li>
+<li><strong>encoding</strong> (<em>str</em>) &#8211; Encoding used to get the IRC messages</li>
+<li><strong>ssl</strong> (<em>bool</em>) &#8211; If using SSL or not</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="IRCBoat.IRCBoat.on_connect">
+<code class="descname">on_connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IRCBoat.IRCBoat.on_connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Triggered when the bot is connecting.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRCBoat.IRCBoat.on_disconnect">
+<code class="descname">on_disconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IRCBoat.IRCBoat.on_disconnect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Triggered when the bot is disconnecting</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRCBoat.IRCBoat.on_ping">
+<code class="descname">on_ping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IRCBoat.IRCBoat.on_ping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Triggered when the server start a ping.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRCBoat.IRCBoat.on_user_join">
+<code class="descname">on_user_join</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IRCBoat.IRCBoat.on_user_join" title="Permalink to this definition">¶</a></dt>
+<dd><p>Triggered when an user is joining a channel where the bot is
+present.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRCBoat.IRCBoat.on_user_message">
+<code class="descname">on_user_message</code><span class="sig-paren">(</span><em>nick</em>, <em>target</em>, <em>message</em><span class="sig-paren">)</span><a class="headerlink" href="#IRCBoat.IRCBoat.on_user_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Triggered when an user send a private message or a chan message.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nick</strong> (<em>str</em>) &#8211; IRC nickname of the user who send the message</li>
+<li><strong>target</strong> (<em>str</em>) &#8211; IRC Chan name or bot name</li>
+<li><strong>message</strong> (<em>str</em>) &#8211; Message sent</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="IRCBoat.IRCBoat.run_bot">
+<code class="descname">run_bot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IRCBoat.IRCBoat.run_bot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle the execution of the bot.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2015, LeBiB.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
