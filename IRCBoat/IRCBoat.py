@@ -43,8 +43,11 @@ class IRCBoat(bottom.Client):
         """
         pass
 
-    def on_ping(self):
+    def on_ping(self, message):
         """ Triggered when the server start a ping.
+
+        :param message: Ping's message
+        :param type: str
         """
         self.send('PONG', message=message)
 
@@ -57,9 +60,9 @@ class IRCBoat(bottom.Client):
     def on_user_message(self, nick, target, message):
         """ Triggered when an user send a private message or a chan message.
 
-        :param nick: IRC nickname of the user who send the message
-        :param target: IRC Chan name or bot name
-        :param message: Message sent
+        :param nick: Sender's IRC nick
+        :param target: Sender's IRC target
+        :param message: Sender's message
         :type nick: str
         :type target: str
         :type message: str
@@ -82,11 +85,11 @@ class Connection(bottom.connection.Connection):
     messages from the server in order to easily debug the application.
     In the future it'll be print in a log file.
 
-    :param host: Host of the IRC server
-    :param port: Port of the IRC server
-    :param encoding: Encoding used to get the IRC messages
-    :param ssl: If using SSL or not
-    :param verbose: If printing all the server message or not
+    :param host: Server's host
+    :param port: Server's port
+    :param encoding: Message's encoding
+    :param ssl: SSL or not
+    :param verbose: ``True`` Logs are printing in the shell
     :type host: str
     :type port: int
     :type encoding: str

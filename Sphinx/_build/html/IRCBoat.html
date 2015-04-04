@@ -114,11 +114,11 @@ In the future it&#8217;ll be print in a log file.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>host</strong> (<em>str</em>) &#8211; Host of the IRC server</li>
-<li><strong>port</strong> (<em>int</em>) &#8211; Port of the IRC server</li>
-<li><strong>encoding</strong> (<em>str</em>) &#8211; Encoding used to get the IRC messages</li>
-<li><strong>ssl</strong> (<em>bool</em>) &#8211; If using SSL or not</li>
-<li><strong>verbose</strong> (<em>bool</em>) &#8211; If printing all the server message or not</li>
+<li><strong>host</strong> (<em>str</em>) &#8211; Server&#8217;s host</li>
+<li><strong>port</strong> (<em>int</em>) &#8211; Server&#8217;s port</li>
+<li><strong>encoding</strong> (<em>str</em>) &#8211; Message&#8217;s encoding</li>
+<li><strong>ssl</strong> (<em>bool</em>) &#8211; SSL or not</li>
+<li><strong>verbose</strong> (<em>bool</em>) &#8211; <code class="docutils literal"><span class="pre">True</span></code> Logs are printing in the shell</li>
 </ul>
 </td>
 </tr>
@@ -165,8 +165,20 @@ In the future it&#8217;ll be print in a log file.</p>
 
 <dl class="method">
 <dt id="IRCBoat.IRCBoat.on_ping">
-<code class="descname">on_ping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#IRCBoat.IRCBoat.on_ping" title="Permalink to this definition">¶</a></dt>
+<code class="descname">on_ping</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="headerlink" href="#IRCBoat.IRCBoat.on_ping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Triggered when the server start a ping.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>message</strong> &#8211; Ping&#8217;s message</li>
+<li><strong>type</strong> &#8211; str</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -185,9 +197,9 @@ present.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>nick</strong> (<em>str</em>) &#8211; IRC nickname of the user who send the message</li>
-<li><strong>target</strong> (<em>str</em>) &#8211; IRC Chan name or bot name</li>
-<li><strong>message</strong> (<em>str</em>) &#8211; Message sent</li>
+<li><strong>nick</strong> (<em>str</em>) &#8211; Sender&#8217;s IRC nick</li>
+<li><strong>target</strong> (<em>str</em>) &#8211; Sender&#8217;s IRC target</li>
+<li><strong>message</strong> (<em>str</em>) &#8211; Sender&#8217;s message</li>
 </ul>
 </td>
 </tr>

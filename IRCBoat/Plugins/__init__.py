@@ -18,22 +18,37 @@ class Plugin(object):
         self.commands = commands
 
     def on_connect(self):
+        """ Triggered when the bot is connecting.
+        """
         pass
 
     def on_disconnect(self):
+        """ Triggered when the bot is disconnecting.
+        """
         pass
 
     def on_user_message(self, nick, target, message):
+        """ Triggered when the bot listen a message.
+
+        :param nick: Sender's IRC nick
+        :param target: Sender's target
+        :param message: Sender's message
+        :type nick: str
+        :type target: str
+        :type message: str
+        """
         if nick == self.bot_name:
             pass
         else:
             handle_command(nick, message)
 
     def on_user_join(self):
+        """ Triggered 
         pass
 
     def handle_command(self, nick, message):
         """ Manage the use of the command.
+        """
 
         :param nick: Sender's IRC nick
         :param message: Sender's IRC message
