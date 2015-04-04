@@ -12,9 +12,11 @@ class Plugin(object):
     :type commands: list[Command(),...]
     """
 
-    def __init__(self, name, bot_name, commands=[]):
+    def __init__(self, name, commands=[]):
+        #TODO: bot_name will be changed and updated when IRCBoat will load the
+        #plugin.
         self.name = name
-        self.bot_name = bot_name
+        self.bot_name = ''
         self.commands = commands
 
     def on_connect(self):
@@ -43,7 +45,7 @@ class Plugin(object):
             handle_command(nick, message)
 
     def on_user_join(self):
-        """ Triggered 
+        """ Triggered
         pass
 
     def handle_command(self, nick, message):

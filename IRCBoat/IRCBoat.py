@@ -2,6 +2,11 @@ import bottom
 from bottom import unpack
 import asyncio
 
+#TODO: Should be a Singleton class and the object/methods is shared between the
+# plugins and commmands. The ideal is to list all the available on_functions
+# inside the master plugin and then load them all when the plugin is loaded.
+# The best way is w/o doubt to load only the functions derivate inside the
+# plugin. There is no need to have useless functions inside the pile.
 class IRCBoat(bottom.Client):
     """
     :param nick: IRC nickname
