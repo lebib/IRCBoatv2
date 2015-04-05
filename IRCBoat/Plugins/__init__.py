@@ -81,6 +81,7 @@ class Plugin(object):
             message = message[1:]
         return message.split(' ')
 
+
 class Command(object):
     """ Command is the master class for the commands. As the Plugin's class do,
     Command provide some functionality to create your own commands for your

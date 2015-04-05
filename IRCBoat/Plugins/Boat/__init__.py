@@ -1,5 +1,6 @@
-import IRCBoat
+# import IRCBoat
 from IRCBoat.Plugins import Plugin
+
 
 class BOAT_Boat(Plugin):
     def __init__(self, nick, realname, irc_boat):
@@ -11,13 +12,11 @@ class BOAT_Boat(Plugin):
     def on_connnect(self):
         """ Connecting to the server and join all the channels available.
         """
-        self.irc_boat.send('NICK', nick=self.nick)
-        self.irc_boat.send('USER', user=self.nick)
-        #TODO: Do some functions for joining all the channels available.
-        self.irc_boat.send('JOIN', channel='#test')
+        # CF IRCBoat directly.
+        pass
 
     def on_disconnect(self):
-        #TODO: Send a message for alerting that the bot he's disconnected.
+        # TODO: Send a message for alerting that the bot he's disconnected.
         pass
 
     def on_ping(self, message):
@@ -36,10 +35,14 @@ class BOAT_Boat(Plugin):
         :type nick: str
         :type channel: str
         """
-        self.irc_boat.send('PRIVMSG', target=channel, message="Salut " + nick)
+        if nick == self.nick:
+            self.irc_boat.send('PRIVMSG', target=channel, message="Salut")
+        else:
+            self.irc_boat.send('PRIVMSG', target=channel,
+                               message="Salut " + nick)
 
     def on_user_message(self, nick, target, message):
         super().on_user_message(nick, target, message)
-        
+
     def join_all_channels(self):
         pass
