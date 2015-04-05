@@ -3,7 +3,7 @@ from IRCBoat.Plugins import Plugin
 
 class BOAT_Boat(Plugin):
     def __init__(self, nick, realname, irc_boat):
-        super().__init__("Boat",[])
+        super().__init__("Boat", [])
         self.nick = nick
         self.realname = realname
         self.irc_boat = irc_boat

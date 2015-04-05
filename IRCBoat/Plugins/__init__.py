@@ -13,8 +13,6 @@ class Plugin(object):
     """
 
     def __init__(self, name, commands=[]):
-        #TODO: bot_name will be changed and updated when IRCBoat will load the
-        #plugin.
         self.name = name
         self.bot_name = ''
         self.commands = commands
