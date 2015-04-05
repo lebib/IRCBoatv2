@@ -42,15 +42,21 @@ class Plugin(object):
         if nick == self.bot_name:
             pass
         else:
-            handle_command(nick, message)
+            self.handle_command(nick, message)
 
-    def on_user_join(self):
-        """ Triggered
+    def on_user_join(self, nick, channel):
+        """ Triggered when an user is joining a channel where the bot is
+        present.
+
+        :param nick: Nick of the joining user
+        :param channel: The channel joined
+        :type nick: str
+        :type channel: str
+        """
         pass
 
     def handle_command(self, nick, message):
         """ Manage the use of the command.
-        """
 
         :param nick: Sender's IRC nick
         :param message: Sender's IRC message
