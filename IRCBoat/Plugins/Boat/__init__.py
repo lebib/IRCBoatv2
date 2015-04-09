@@ -9,11 +9,13 @@ class BOAT_Boat(Plugin):
         self.realname = realname
         self.irc_boat = irc_boat
 
-    def on_connnect(self):
+    def on_connect(self):
         """ Connecting to the server and join all the channels available.
         """
-        # CF IRCBoat directly.
-        pass
+        self.irc_boat.send('NICK', nick=self.nick)
+        self.irc_boat.send('USER', user=self.nick, realname=self.realname)
+        self.irc_boat.send('JOIN', channel='#test')
+        self.irc_boat.send('JOIN', channel='#discutoire')
 
     def on_disconnect(self):
         # TODO: Send a message for alerting that the bot he's disconnected.

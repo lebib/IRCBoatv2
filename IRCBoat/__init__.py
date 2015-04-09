@@ -10,17 +10,9 @@ class IRCBoat(bottom.Client):
         self.host, self.port = host, port
         self.encoding, self.ssl = encoding, ssl
         self.connection = Connection(host, port, self, encoding, ssl, True)
-        self.__add_event__('CLIENT_CONNECT', self.on_connect)
 
     def run_bot(self):
         asyncio.get_event_loop().run_until_complete(super().run())
-
-    def on_connect(self):
-        self.send('NICK', nick=self.nick)
-        self.send('USER', user=self.nick, realname=self.realname)
-        # TODO: Do some functions for joining all the channels available.
-        self.send('JOIN', channel='#discutoire')
-        self.send('JOIN', channel='#test')
 
     def load_plugin(self, plugin):
         if self.validate_plugin(plugin):

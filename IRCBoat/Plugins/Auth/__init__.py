@@ -1,5 +1,6 @@
 from IRCBoat.Plugins import Plugin
 
-class BOAT_Auth(plugin):
+
+class BOAT_Auth(Plugin):
     def __init__(self):
-        super().__init__("Auth",[])
+        super().__init__("Auth", [])

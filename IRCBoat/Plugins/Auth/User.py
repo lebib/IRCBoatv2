@@ -1,6 +1,6 @@
 from os import linesep
 from passlib.hash import sha256_crypt
-import csv
+
 
 class User:
     """ User are cosidered as entries inside a csv file manipulated by UserList.
@@ -10,8 +10,8 @@ class User:
 
     The content of line is based on : ``LOGIN,PASSWORD,LEVEL,NICKNAME,HOST,``
 
-    The hashing, salting and encrypting is made by sha256_crypt from the passlib
-    library.
+    The hashing, salting and encrypting is made by sha256_crypt from the
+    passlib library.
 
     :Example: ``"myLogin,myPassword,0,myCurrentNickname,myCurrentHost"``
     """
@@ -54,12 +54,13 @@ class User:
             self.login, self.level, self.host, self.nick
         )
 
+
 class UserList(dict):
     """ UserList is based on dict in order to have the username as the key and
     the user object as a value.
 
-    The main goal here is to have ``__init__`` loading ``source`` and gather all
-    the users from it.
+    The main goal here is to have ``__init__`` loading ``source`` and gather
+    all the users from it.
 
     :param source: CSV file where are stored the users entries.
     :type source: str
