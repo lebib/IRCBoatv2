@@ -1,10 +1,9 @@
-# import IRCBoat
 from IRCBoat.Plugins import Plugin
 
 
 class BOAT_Boat(Plugin):
-    def __init__(self, nick, realname, irc_boat):
-        super().__init__("Boat", [])
+    def __init__(self, irc_boat, nick, realname):
+        super().__init__("Boat", irc_boat, [])
         self.nick = nick
         self.realname = realname
         self.irc_boat = irc_boat

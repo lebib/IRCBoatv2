@@ -12,9 +12,9 @@ class Plugin(object):
     :type commands: list[Command(),...]
     """
 
-    def __init__(self, name, commands=[]):
+    def __init__(self, name, irc_boat, commands=[]):
         self.name = name
-        self.bot_name = ''
+        self.irc_boat = irc_boat
         self.commands = commands
 
     def on_connect(self):
@@ -65,7 +65,7 @@ class Plugin(object):
         if self.name == message[0]:
             for command in self.commands:
                 if command.name == message[1]:
-                    command.trigger(message[2:])
+                    command.trigger([nick] + message[2:])
                     pass
 
     def process_command(self, message):
@@ -81,6 +81,9 @@ class Plugin(object):
             message = message[1:]
         return message.split(' ')
 
+    def send_error_message(self, nick, message):
+        pass
+
 
 class Command(object):
     """ Command is the master class for the commands. As the Plugin's class do,
@@ -89,18 +92,21 @@ class Command(object):
 
     :param name: Command's name
     :param level: Right's level required for using it
+    :param function: Function triggered when user is calling the command.
     :type name: str
     :type level: int
+    :type function: function
     """
 
-    def __init__(self, name, level=0):
+    def __init__(self, name, level, function):
         self.name = name
         self.level = level
+        self.function = function
 
-    def trigger(self, args):
+    def trigger(self, nick="", host="", args=[]):
         """ Trigger the content when the command is called.
 
         :param args: Arguments list
         :type args: list[str(),...]
         """
-        pass
+        self.function(nick, host, args)

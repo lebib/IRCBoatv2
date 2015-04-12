@@ -1,4 +1,4 @@
-from IRCBoat.Plugins.Auth import User
+from IRCBoat.Plugins.Auth.User import User, UserList
 
 
 class Auth(object):
@@ -25,7 +25,7 @@ class Auth(object):
         :type nickname: str
         :type host: str
         """
-        user_list = User.UserList(self.filename)
+        user_list = UserList(self.filename)
         user_list[login] = User(
             ','.join([login,
                       User.hash_password(password),
@@ -39,7 +39,7 @@ class Auth(object):
         :param login: User's login
         :type login: str
         """
-        user_list = User.UserList(self.filename)
+        user_list = UserList(self.filename)
         del user_list[login]
         user_list.save()
 
@@ -59,7 +59,7 @@ class Auth(object):
         :type host: str
         """
         if self.is_user(login):
-            user_list = User.UserList(self.filename)
+            user_list = UserList(self.filename)
             old_user = user_list[login]
 
             if password is not None:
@@ -90,7 +90,7 @@ class Auth(object):
         :return: ``True`` if the user exists, ``False`` if not.
         :rtype: bool
         """
-        user_list = User.UserList(self.filename)
+        user_list = UserList(self.filename)
         return login in user_list
 
     def is_user_connected(self, login):
@@ -102,7 +102,7 @@ class Auth(object):
         :rtype: bool
         """
         if self.get_user(login):
-            user_list = User.UserList(self.filename)
+            user_list = UserList(self.filename)
         return user_list[login].nickname != '' and user_list[login].host != ''
 
     def get_user(self, login):
@@ -113,7 +113,7 @@ class Auth(object):
         :return: ``User()`` if exists, ``None`` if not.
         :rtype: User / None
         """
-        user_list = User.UserList(self.filename)
+        user_list = UserList(self.filename)
         if self.is_user(login):
             return user_list[login]
         else:
