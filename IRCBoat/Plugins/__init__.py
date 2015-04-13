@@ -17,6 +17,9 @@ class Plugin(object):
         self.irc_boat = irc_boat
         self.commands = commands
 
+    def on_ping(self):
+        pass
+
     def on_connect(self):
         """ Triggered when the bot is connecting.
         """
@@ -37,7 +40,7 @@ class Plugin(object):
         :type target: str
         :type message: str
         """
-        if nick == self.bot_name:
+        if nick == self.irc_boat.nick:
             pass
         else:
             self.handle_command(nick, message)
@@ -63,9 +66,13 @@ class Plugin(object):
         """
         message = self.process_command(message)
         if self.name == message[0]:
+            print("searching command")
             for command in self.commands:
                 if command.name == message[1]:
-                    command.trigger([nick] + message[2:])
+                    print("command found")
+                    print(message)
+                    print(message[2:])
+                    command.trigger(nick=nick, host="", args=message[2:])
                     pass
 
     def process_command(self, message):
@@ -81,8 +88,10 @@ class Plugin(object):
             message = message[1:]
         return message.split(' ')
 
-    def send_error_message(self, nick, message):
-        pass
+    def send_error_message(self, command, nick, message):
+        # msg = "ERROR {}.{} {}".format(self.name, command, message)
+        print(message)
+        # self.irc_boat.send('PRIVMSG', target=nick, message=message)
 
 
 class Command(object):

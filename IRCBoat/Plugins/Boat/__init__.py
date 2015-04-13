@@ -2,19 +2,18 @@ from IRCBoat.Plugins import Plugin
 
 
 class BOAT_Boat(Plugin):
-    def __init__(self, irc_boat, nick, realname):
+    def __init__(self, irc_boat):
         super().__init__("Boat", irc_boat, [])
-        self.nick = nick
-        self.realname = realname
         self.irc_boat = irc_boat
 
     def on_connect(self):
         """ Connecting to the server and join all the channels available.
         """
-        self.irc_boat.send('NICK', nick=self.nick)
-        self.irc_boat.send('USER', user=self.nick, realname=self.realname)
+        self.irc_boat.send('NICK', nick=self.irc_boat.nick)
+        self.irc_boat.send('USER', user=self.irc_boat.nick,
+                           realname=self.irc_boat.realname)
         self.irc_boat.send('JOIN', channel='#test')
-        self.irc_boat.send('JOIN', channel='#discutoire')
+        # self.irc_boat.send('JOIN', channel='#discutoire')
 
     def on_disconnect(self):
         # TODO: Send a message for alerting that the bot he's disconnected.
@@ -36,7 +35,7 @@ class BOAT_Boat(Plugin):
         :type nick: str
         :type channel: str
         """
-        if nick == self.nick:
+        if nick == self.irc_boat.nick:
             self.irc_boat.send('PRIVMSG', target=channel, message="Salut")
         else:
             self.irc_boat.send('PRIVMSG', target=channel,
